@@ -5,6 +5,10 @@ dist-ssr/
 *.local
 .env
 .env.*
+!.env.example
+backend/src/data/db.json
+
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
