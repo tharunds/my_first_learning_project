@@ -8,3 +8,4 @@ router.put('/', updateProfile);
 router.post('/toggle-volunteer', toggleVolunteer);
 
 export default router;
+

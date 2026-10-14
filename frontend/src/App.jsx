@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import Dashboard from './components/Dashboard';
@@ -11,6 +11,7 @@ import BookSessionModal from './components/BookSessionModal';
 import ChatModal from './components/ChatModal';
 import AddGoalModal from './components/AddGoalModal';
 
+import { api } from './services/api';
 import { 
   initialUserProfile, 
   mentorsData, 
@@ -40,6 +41,35 @@ export default function App() {
   const [isAddGoalOpen, setIsAddGoalOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState(null);
 
+  // Synchronize state with backend on mount
+  useEffect(() => {
+    const fetchBackendData = async () => {
+      try {
+        const [profileRes, mentorsRes, upcomingRes, pastRes, goalsRes, skillsRes, badgesRes] = await Promise.allSettled([
+          api.getProfile(),
+          api.getMentors(),
+          api.getUpcomingSessions(),
+          api.getPastSessions(),
+          api.getGoals(),
+          api.getSkills(),
+          api.getBadges()
+        ]);
+
+        if (profileRes.status === 'fulfilled' && profileRes.value?.data) setUserProfile(profileRes.value.data);
+        if (mentorsRes.status === 'fulfilled' && mentorsRes.value?.data) setMentors(mentorsRes.value.data);
+        if (upcomingRes.status === 'fulfilled' && upcomingRes.value?.data) setUpcomingSessions(upcomingRes.value.data);
+        if (pastRes.status === 'fulfilled' && pastRes.value?.data) setPastSessions(pastRes.value.data);
+        if (goalsRes.status === 'fulfilled' && goalsRes.value?.data) setLearningGoals(goalsRes.value.data);
+        if (skillsRes.status === 'fulfilled' && skillsRes.value?.data) setSkillsCatalog(skillsRes.value.data);
+        if (badgesRes.status === 'fulfilled' && badgesRes.value?.data) setBadges(badgesRes.value.data);
+      } catch (err) {
+        console.log('Running with offline dataset fallback');
+      }
+    };
+
+    fetchBackendData();
+  }, []);
+
   const showToast = (msg) => {
     setToastMessage(msg);
     setTimeout(() => {
@@ -47,25 +77,41 @@ export default function App() {
     }, 3500);
   };
 
-  const handleBookingConfirmed = (newSession) => {
-    setUpcomingSessions(prev => [newSession, ...prev]);
+  const handleBookingConfirmed = async (newSession) => {
+    try {
+      const res = await api.bookSession(newSession);
+      const saved = res?.data || newSession;
+      setUpcomingSessions(prev => [saved, ...prev]);
+    } catch (err) {
+      setUpcomingSessions(prev => [newSession, ...prev]);
+    }
     showToast(`Session booked with ${newSession.mentorName}! Check your Dashboard.`);
     setSelectedBookingMentor(null);
   };
 
-  const handleAddGoal = (newGoal) => {
-    setLearningGoals(prev => [newGoal, ...prev]);
+  const handleAddGoal = async (newGoal) => {
+    try {
+      const res = await api.createGoal(newGoal);
+      const saved = res?.data || newGoal;
+      setLearningGoals(prev => [saved, ...prev]);
+    } catch (err) {
+      setLearningGoals(prev => [newGoal, ...prev]);
+    }
     showToast(`New learning goal added: "${newGoal.title}"`);
   };
 
   const handleExploreSkillMentors = (skillName) => {
     setActiveTab('explore');
-    // Pre-filtering happens naturally or user can search
     showToast(`Filtered mentors for ${skillName}`);
   };
 
-  const handleUpdateProfile = (updatedProfile) => {
+  const handleUpdateProfile = async (updatedProfile) => {
     setUserProfile(updatedProfile);
+    try {
+      await api.updateProfile(updatedProfile);
+    } catch (err) {
+      // offline fallback
+    }
     showToast('Profile information successfully updated!');
   };
 
@@ -90,7 +136,7 @@ export default function App() {
           activeTab={activeTab}
           setActiveTab={setActiveTab}
           currentRole={currentRole}
-          streakCount={userProfile.stats.currentStreak}
+          streakCount={userProfile.stats?.currentStreak || 8}
           onOpenBooking={() => setSelectedBookingMentor(mentors[0])}
         />
 
@@ -196,4 +242,3 @@ export default function App() {
     </div>
   );
 }
-

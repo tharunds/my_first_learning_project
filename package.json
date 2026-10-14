@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "SkillBridge - A Peer-to-Peer Volunteer Mentorship & Learning Platform",
   "scripts": {
-    "dev": "npm --prefix frontend run dev",
+    "dev": "concurrently -n \"backend,frontend\" -c \"blue.bold,magenta.bold\" \"npm --prefix backend run dev\" \"npm --prefix frontend run dev\"",
+    "server": "npm --prefix backend run dev",
+    "client": "npm --prefix frontend run dev",
     "build": "npm --prefix frontend run build",
-    "preview": "npm --prefix frontend run preview",
-    "install:frontend": "npm --prefix frontend install"
+    "install:all": "npm install && npm --prefix backend install && npm --prefix frontend install"
   },
   "keywords": [
     "mentorship",
@@ -15,6 +16,8 @@
     "skillbridge"
   ],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
 }
-

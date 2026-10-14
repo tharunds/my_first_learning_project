@@ -14,3 +14,4 @@ router.post('/book', bookSession);
 router.delete('/:id', cancelSession);
 
 export default router;
+

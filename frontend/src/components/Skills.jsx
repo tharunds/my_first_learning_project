@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { api } from '../services/api';
 import { 
   Zap, 
   Search, 
@@ -24,22 +25,40 @@ export default function Skills({
 
   const [localCatalog, setLocalCatalog] = useState(skillsCatalog);
 
-  const toggleLearnSkill = (categoryIdx, skillIdx) => {
+  const toggleLearnSkill = async (categoryIdx, skillIdx) => {
+    const category = localCatalog[categoryIdx];
+    const skill = category.skills[skillIdx];
+
     setLocalCatalog(prev => {
       const copy = JSON.parse(JSON.stringify(prev));
       const s = copy[categoryIdx].skills[skillIdx];
       s.inLearningList = !s.inLearningList;
       return copy;
     });
+
+    try {
+      await api.toggleSkillLearn(category.category, skill.name);
+    } catch (err) {
+      // offline fallback
+    }
   };
 
-  const toggleMentorSkill = (categoryIdx, skillIdx) => {
+  const toggleMentorSkill = async (categoryIdx, skillIdx) => {
+    const category = localCatalog[categoryIdx];
+    const skill = category.skills[skillIdx];
+
     setLocalCatalog(prev => {
       const copy = JSON.parse(JSON.stringify(prev));
       const s = copy[categoryIdx].skills[skillIdx];
       s.canMentor = !s.canMentor;
       return copy;
     });
+
+    try {
+      await api.toggleSkillMentor(category.category, skill.name);
+    } catch (err) {
+      // offline fallback
+    }
   };
 
   return (

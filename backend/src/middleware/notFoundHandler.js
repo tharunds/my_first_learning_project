@@ -4,3 +4,4 @@ export const notFoundHandler = (req, res, next) => {
     error: `Cannot ${req.method} ${req.originalUrl}`
   });
 };
+

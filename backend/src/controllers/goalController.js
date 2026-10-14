@@ -66,3 +66,4 @@ export const getBadges = (req, res, next) => {
     next(err);
   }
 };
+

@@ -16,3 +16,4 @@ router.delete('/:id', deleteGoal);
 router.get('/badges', getBadges);
 
 export default router;
+

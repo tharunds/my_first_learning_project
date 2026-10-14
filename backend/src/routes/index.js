@@ -24,3 +24,4 @@ router.use('/skills', skillRoutes);
 router.use('/messages', messageRoutes);
 
 export default router;
+

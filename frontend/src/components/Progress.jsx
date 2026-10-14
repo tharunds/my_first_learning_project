@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { api } from '../services/api';
 import { 
   TrendingUp, 
   Target, 
@@ -23,7 +24,8 @@ export default function Progress({
 }) {
   const [selectedDomain, setSelectedDomain] = useState('All');
 
-  const toggleMilestone = (goalId, milestoneId) => {
+  const toggleMilestone = async (goalId, milestoneId) => {
+    // Optimistic UI update
     setGoals(prevGoals => {
       return prevGoals.map(goal => {
         if (goal.id !== goalId) return goal;
@@ -45,6 +47,12 @@ export default function Progress({
         };
       });
     });
+
+    try {
+      await api.toggleMilestone(goalId, milestoneId);
+    } catch (e) {
+      // offline fallback
+    }
   };
 
   const totalMilestones = goals.reduce((acc, g) => acc + g.milestones.length, 0);

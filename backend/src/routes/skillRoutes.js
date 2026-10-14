@@ -12,3 +12,4 @@ router.post('/toggle-learn', toggleSkillLearn);
 router.post('/toggle-mentor', toggleSkillMentor);
 
 export default router;
+

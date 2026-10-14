@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Send, Paperclip, Smile, Video } from 'lucide-react';
+import { api } from '../services/api';
 
 export default function ChatModal({ mentor, initialMessages = [], onClose, onBookSession }) {
   const [messages, setMessages] = useState(
@@ -15,29 +16,52 @@ export default function ChatModal({ mentor, initialMessages = [], onClose, onBoo
   );
   const [inputVal, setInputVal] = useState('');
 
-  const handleSend = (e) => {
+  useEffect(() => {
+    if (mentor?.id) {
+      api.getMessages(mentor.id)
+        .then(res => {
+          if (res?.data && res.data.length > 0) {
+            setMessages(res.data);
+          }
+        })
+        .catch(() => {});
+    }
+  }, [mentor?.id]);
+
+  const handleSend = async (e) => {
     e.preventDefault();
     if (!inputVal.trim()) return;
 
+    const userText = inputVal.trim();
     const userMsg = {
       sender: "You",
       time: "Just now",
-      text: inputVal.trim()
+      text: userText
     };
 
     setMessages(prev => [...prev, userMsg]);
     setInputVal('');
 
+    try {
+      await api.sendMessage(mentor.id, userMsg);
+    } catch (err) {
+      // offline fallback
+    }
+
     // Simulate mentor quick reply
-    setTimeout(() => {
-      setMessages(prev => [
-        ...prev,
-        {
-          sender: mentor.name,
-          time: "Just now",
-          text: `Got your message! Let's schedule a session to walk through this together in real-time.`
-        }
-      ]);
+    setTimeout(async () => {
+      const mentorReply = {
+        sender: mentor.name,
+        time: "Just now",
+        text: `Got your message! Let's schedule a session to walk through this together in real-time.`
+      };
+      setMessages(prev => [...prev, mentorReply]);
+
+      try {
+        await api.sendMessage(mentor.id, mentorReply);
+      } catch (err) {
+        // offline fallback
+      }
     }, 1200);
   };
 

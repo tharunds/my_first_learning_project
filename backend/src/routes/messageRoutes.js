@@ -7,3 +7,4 @@ router.get('/:mentorId', getMessages);
 router.post('/:mentorId', sendMessage);
 
 export default router;
+
