@@ -5,100 +5,110 @@
 
 ---
 
-## 🌟 Key Features & Frontend Sections
-
-1. **Dashboard**
-   - Personalized learner welcome banner and quick actions
-   - High-level progress metrics: Total hours learned, sessions completed, active streak, and connected mentors
-   - **Next Upcoming Mentorship Session spotlight** with 1-click Google Meet room launcher
-   - Active learning goals snapshot & weekly featured volunteer mentors
-
-2. **Explore Mentors**
-   - Search mentors by name, company, bio, and technology (React, Python, AWS, Docker, System Design, Figma, etc.)
-   - Category filters: Frontend, Backend, AI & Data, DevOps, UI/UX, and Career Guidance
-   - Filter and sort by highest rated or most sessions completed
-   - **Interactive "Book Free Session" Modal**: Select session type, date, time slot, and specify custom topics / repo links
-   - **Direct Mentor Chat Modal** to preview discussions and coordinate before calls
-
-3. **My Mentors**
-   - **Upcoming Calls**: Scheduled 1-on-1 sessions with Google Meet launch links and preparation notes
-   - **Connected Mentors**: Directory of all mentors you've collaborated with
-   - **Past Feedback & Notes**: Recorded feedback, advice, and ratings from completed sessions
-
-4. **Progress & Goals**
-   - Interactive roadmaps: Click any milestone checkbox to mark it done or pending (automatically updates goal progress percentage)
-   - Goal creation modal with customizable milestones, domains, and target dates
-   - Community badges and achievements showcase (Curious Learner, Consistency Ace, Volunteer Mentor, Knowledge Seeker)
-
-5. **Skills Catalog**
-   - Interactive categorized matrix across Frontend, Backend, AI/Data, DevOps, and UI/UX
-   - **"Want to Learn" vs "Can Mentor (Volunteer)"** toggles on every skill
-   - Instant search and 1-click deep links to find mentors for any selected skill
-
-6. **Profile (Dual Learner & Volunteer Identity)**
-   - Public learner profile with editable bio, target roles, social links (GitHub, LinkedIn, Website), and timezone
-   - **Volunteer Mentor Mode**: Easily register skills you can mentor to give back to beginners for free
-   - Learning stats & hours breakdown
-
----
-
-## 🛠️ Tech Stack
-
-- **React 19**
-- **Vite** (Lightning fast dev server and bundler)
-- **Tailwind CSS 3** (Responsive, modern styling and customized brand palette)
-- **Lucide React** (Clean, consistent iconography)
-
----
-
-## 📁 Project Structure
+## 📁 Project Architecture
 
 ```
 my_first_learning_project/
-├── frontend/                        # Frontend application directory
-│   ├── index.html                   # HTML template with modern typography & meta
-│   ├── vite.config.js               # Vite configuration
-│   ├── tailwind.config.js           # Tailwind configuration & custom theme
-│   ├── postcss.config.js            # PostCSS configuration
-│   ├── package.json                 # Frontend dependencies & scripts
+├── backend/                         # Express.js REST API Backend
+│   ├── src/
+│   │   ├── server.js                # Server entry point (port 5000)
+│   │   ├── app.js                   # Express application & middleware
+│   │   ├── config/                  # Environment variables & constants
+│   │   ├── data/
+│   │   │   ├── store.js             # Data repository & file persistence
+│   │   │   └── initialData.json     # Seed dataset
+│   │   ├── controllers/             # Business logic handlers
+│   │   │   ├── profileController.js # Learner profile & volunteer toggle
+│   │   │   ├── mentorController.js  # Search & mentor queries
+│   │   │   ├── sessionController.js # Book, view & cancel sessions
+│   │   │   ├── goalController.js    # Learning roadmaps & milestones
+│   │   │   ├── skillController.js   # Skills catalog & preferences
+│   │   │   └── messageController.js # Direct messaging
+│   │   ├── routes/                  # RESTful API route definitions
+│   │   └── middleware/              # Error & 404 handlers
+│   ├── .env.example
+│   └── package.json
+│
+├── frontend/                        # React 19 + Vite + Tailwind CSS Frontend
+│   ├── index.html                   # HTML template with modern typography
+│   ├── vite.config.js               # Vite config with backend proxy (/api -> :5000)
+│   ├── tailwind.config.js           # Tailwind theme configuration
+│   ├── postcss.config.js
+│   ├── package.json
 │   └── src/
-│       ├── main.jsx                 # Application entry point
-│       ├── App.jsx                  # Root controller with state management
-│       ├── index.css                # Tailwind directives & custom scrollbars
+│       ├── main.jsx                 # Client entry point
+│       ├── App.jsx                  # Main coordinator & reactive state
+│       ├── index.css                # Global styles
+│       ├── services/
+│       │   └── api.js               # Resilient API client with fallback
 │       ├── data/
-│       │   └── mockData.js          # Initial profiles, mentors, sessions, & badges
+│       │   └── mockData.js          # Offline fallback dataset
 │       └── components/              # Modular UI components
-│           ├── Navbar.jsx           # Header, search, notifications & role switch
+│           ├── Navbar.jsx           # Top header, search & role switch
 │           ├── Sidebar.jsx          # Navigation tabs & streak counter
-│           ├── Dashboard.jsx        # Welcome banner, stats & upcoming session
-│           ├── ExploreMentors.jsx   # Search, domain filters & mentor cards
-│           ├── MyMentors.jsx        # Upcoming calls & past feedback notes
-│           ├── Progress.jsx         # Milestone checklist & badges gallery
-│           ├── Skills.jsx           # Categorized skills matrix
+│           ├── Dashboard.jsx        # Learner overview, stats, next session
+│           ├── ExploreMentors.jsx   # Search & filter volunteer mentors
+│           ├── MyMentors.jsx        # Scheduled calls & past feedback
+│           ├── Progress.jsx         # Milestone checklist & community badges
+│           ├── Skills.jsx           # Categorized skills exchange
 │           ├── Profile.jsx          # Dual learner & volunteer identity
 │           ├── BookSessionModal.jsx # Mentorship session booking modal
 │           ├── ChatModal.jsx        # Direct messaging modal
 │           └── AddGoalModal.jsx     # Learning goal creation modal
-├── package.json                     # Root scripts for convenience
+│
+├── package.json                     # Root scripts for smooth concurrent development
 └── README.md
 ```
 
 ---
 
-## 🚀 Getting Started
+## 📡 REST API Reference
 
-### 1. Start the Development Server
-You can run it directly from the project root:
+| Endpoint | Method | Description |
+|---|---|---|
+| `/api/health` | `GET` | Health check and server status |
+| `/api/profile` | `GET` | Fetch learner & volunteer profile details |
+| `/api/profile` | `PUT` | Update bio, target roles, location, and social links |
+| `/api/profile/toggle-volunteer` | `POST` | Toggle volunteer mentor availability mode |
+| `/api/mentors` | `GET` | Query mentors (supports `?category=`, `?query=`, `?sortBy=`) |
+| `/api/mentors/:id` | `GET` | Fetch detailed profile for a specific mentor |
+| `/api/sessions/upcoming` | `GET` | List scheduled 1-on-1 calls with meeting rooms |
+| `/api/sessions/past` | `GET` | List completed mentorship sessions & reviews |
+| `/api/sessions/book` | `POST` | Reserve a free volunteer session |
+| `/api/sessions/:id` | `DELETE` | Cancel or remove a scheduled session |
+| `/api/goals` | `GET` | Retrieve active learning roadmaps & milestones |
+| `/api/goals` | `POST` | Create a new learning goal with milestones |
+| `/api/goals/:goalId/milestones/:id` | `PATCH` | Toggle milestone completion checkbox |
+| `/api/goals/badges` | `GET` | List community achievement badges |
+| `/api/skills` | `GET` | Get categorized skills matrix |
+| `/api/skills/toggle-learn` | `POST` | Add/remove skill from "Want to Learn" list |
+| `/api/skills/toggle-mentor` | `POST` | Add/remove skill from "Can Mentor" list |
+| `/api/messages/:mentorId` | `GET` | Retrieve message history with a mentor |
+| `/api/messages/:mentorId` | `POST` | Send a new message to a mentor |
+
+---
+
+## 🚀 Smooth Development Workflow
+
+### Start Full-Stack App with a Single Command
+From the project root:
 ```bash
 npm run dev
 ```
-*(Or navigate to the frontend folder and run it there: `cd frontend && npm run dev`)*
+*This uses `concurrently` to spin up both the Express backend (`http://localhost:5000`) and the Vite frontend (`http://localhost:3000`) with unified colored terminal logging.*
 
-Open your browser at **`http://localhost:3000`** to view the SkillBridge web app.
-
-### 2. Build for Production
-```bash
-npm run build
-```
-*(Or inside frontend: `cd frontend && npm run build`)*
-The production bundle will be compiled into `frontend/dist/`.
+### Individual Services
+- **Backend only**:
+  ```bash
+  npm run server
+  # or: cd backend && npm run dev
+  ```
+- **Frontend only**:
+  ```bash
+  npm run client
+  # or: cd frontend && npm run dev
+  ```
+- **Production Build**:
+  ```bash
+  npm run build
+  ```
