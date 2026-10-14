@@ -1,0 +1,397 @@
+export const initialUserProfile = {
+  name: "Tharun D S",
+  username: "tharunds",
+  role: "Aspiring Full Stack Engineer & Peer Mentor",
+  avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80",
+  email: "tharun.ds@skillbridge.edu",
+  bio: "Passionate computer science student aiming to master modern web applications, distributed systems, and UI engineering. Believer in learning in public and paying it forward by tutoring beginners.",
+  location: "Bengaluru, India",
+  timezone: "IST (UTC +5:30)",
+  github: "https://github.com/tharunds",
+  linkedin: "https://linkedin.com/in/tharunds",
+  website: "https://tharunds.dev",
+  memberSince: "August 2025",
+  isVolunteerMentor: true,
+  volunteerBio: "Happy to volunteer and mentor learners getting started with HTML/CSS, Modern JavaScript, and Git fundamentals. Free 30-min friendly sessions!",
+  stats: {
+    hoursLearned: 0,
+    sessionsCompleted: 0,
+    mentorsConnected:0,
+    currentStreak:0,
+    volunteerHoursGiven:0,
+    learnersHelped:0
+  },
+  targetRoles: ["Full Stack Developer", "Frontend Engineer", "Open-Source Contributor"],
+  learningSkills: [
+    { name: "React 19", level: "Intermediate", goalHours: 30, completedHours: 22 },
+    { name: "TypeScript", level: "Beginner", goalHours: 25, completedHours: 14 },
+    { name: "Tailwind CSS", level: "Advanced", goalHours: 20, completedHours: 19 },
+    { name: "System Design", level: "Beginner", goalHours: 40, completedHours: 11 },
+    { name: "Node.js & Express", level: "Intermediate", goalHours: 35, completedHours: 26 }
+  ],
+  mentorSkills: [
+    { name: "HTML5 & Semantic Markup", level: "Expert" },
+    { name: "Modern CSS & Flexbox/Grid", level: "Advanced" },
+    { name: "JavaScript ES6+ Basics", level: "Intermediate" },
+    { name: "Git & GitHub Workflow", level: "Advanced" }
+  ]
+};
+
+export const mentorsData = [
+  {
+    id: "m-1",
+    name: "Sarah Jenkins",
+    role: "Staff Frontend Engineer",
+    company: "Stripe",
+    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&auto=format&fit=crop&q=80",
+    location: "San Francisco, CA (Remote)",
+    rating: 4.95,
+    reviewsCount: 48,
+    sessionsCount: 94,
+    badge: "Top Volunteer",
+    bio: "Passionate about making web architecture accessible. Volunteering to guide ambitious learners in React, TypeScript, component design systems, and career transitions.",
+    categories: ["Frontend", "Architecture", "Career Guidance"],
+    skills: ["React", "TypeScript", "Next.js", "Performance", "Code Reviews"],
+    availability: "Tue, Thu & Sat (Evenings)",
+    responseTime: "< 2 hours",
+    languages: ["English"],
+    verified: true
+  },
+  {
+    id: "m-2",
+    name: "Alex Rivera",
+    role: "Senior Cloud & DevOps Architect",
+    company: "AWS Community Hero",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&auto=format&fit=crop&q=80",
+    location: "Austin, TX (Remote)",
+    rating: 4.9,
+    reviewsCount: 39,
+    sessionsCount: 78,
+    badge: "Cloud Mentor",
+    bio: "Demystifying cloud architecture, Docker, Kubernetes, and CI/CD pipelines for self-taught developers and college students. 100% free volunteer mentorship.",
+    categories: ["DevOps", "Cloud", "Backend"],
+    skills: ["Docker", "Kubernetes", "AWS", "CI/CD", "Linux", "Node.js"],
+    availability: "Mon, Wed & Sun",
+    responseTime: "< 4 hours",
+    languages: ["English", "Spanish"],
+    verified: true
+  },
+  {
+    id: "m-3",
+    name: "Priya Sharma",
+    role: "Lead Product Designer",
+    company: "Figma Alumni / Design Co",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80",
+    location: "Bengaluru, India",
+    rating: 5.0,
+    reviewsCount: 52,
+    sessionsCount: 110,
+    badge: "Design Champion",
+    bio: "Helping developers gain a superpower: UI/UX design sense! I volunteer for portfolio critiques, Figma mastery, and bridging the gap between design and code.",
+    categories: ["UI/UX", "Design Systems", "Portfolio Review"],
+    skills: ["Figma", "Design Systems", "UI/UX", "User Research", "Wireframing"],
+    availability: "Weekends & Friday afternoons",
+    responseTime: "< 1 hour",
+    languages: ["English", "Hindi"],
+    verified: true
+  },
+  {
+    id: "m-4",
+    name: "David Chen",
+    role: "AI & ML Research Fellow",
+    company: "OpenAI Open-Source Fellow",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&auto=format&fit=crop&q=80",
+    location: "Seattle, WA",
+    rating: 4.92,
+    reviewsCount: 61,
+    sessionsCount: 135,
+    badge: "AI Volunteer",
+    bio: "Passionate about democratizing machine learning, prompt engineering, Python data structures, and LLM application development. Let's make AI fun and practical.",
+    categories: ["AI & Data", "Python", "Data Science"],
+    skills: ["Python", "PyTorch", "LLMs", "LangChain", "Algorithms", "Data Science"],
+    availability: "Tue & Sat mornings",
+    responseTime: "< 3 hours",
+    languages: ["English", "Mandarin"],
+    verified: true
+  },
+  {
+    id: "m-5",
+    name: "Ananya Patel",
+    role: "Senior Distributed Systems Engineer",
+    company: "Razorpay",
+    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&auto=format&fit=crop&q=80",
+    location: "Bengaluru, India",
+    rating: 4.88,
+    reviewsCount: 34,
+    sessionsCount: 65,
+    badge: "Backend Pro",
+    bio: "Specializing in high-throughput backend services, database indexing, and microservices in Go and Java. Happy to conduct mock system design sessions.",
+    categories: ["Backend", "Databases", "System Design"],
+    skills: ["Go", "PostgreSQL", "Redis", "Kafka", "System Design", "Microservices"],
+    availability: "Thursday & Sunday evenings",
+    responseTime: "< 5 hours",
+    languages: ["English", "Gujarati", "Hindi"],
+    verified: true
+  },
+  {
+    id: "m-6",
+    name: "Marcus Vance",
+    role: "Engineering Manager & Tech Coach",
+    company: "TechTalent Org",
+    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&auto=format&fit=crop&q=80",
+    location: "London, UK (Remote)",
+    rating: 4.94,
+    reviewsCount: 77,
+    sessionsCount: 180,
+    badge: "Career Guide",
+    bio: "Over 12 years helping early-career engineers land their dream roles. Free resume audits, behavioral mock interviews, and personalized career roadmaps.",
+    categories: ["Career Guidance", "Interview Prep", "Soft Skills"],
+    skills: ["Resume Review", "Mock Interviews", "Behavioral Prep", "Tech Leadership", "Networking"],
+    availability: "Mon, Wed & Fri",
+    responseTime: "< 2 hours",
+    languages: ["English"],
+    verified: true
+  }
+];
+
+export const upcomingSessions = [
+  {
+    id: "sess-1",
+    mentorId: "m-1",
+    mentorName: "Sarah Jenkins",
+    mentorAvatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&auto=format&fit=crop&q=80",
+    mentorRole: "Staff Frontend Engineer @ Stripe",
+    topic: "React 19 Server Components vs Client State Patterns",
+    date: "Tomorrow",
+    time: "6:30 PM - 7:15 PM IST",
+    status: "Upcoming",
+    sessionType: "1-on-1 Code & Concept Review",
+    meetLink: "https://meet.google.com/sb-react-arch",
+    prepNotes: "Prepare question list on React 19 useActionState and component breakdown."
+  },
+  {
+    id: "sess-2",
+    mentorId: "m-3",
+    mentorName: "Priya Sharma",
+    mentorAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80",
+    mentorRole: "Lead Product Designer @ Figma Alumni",
+    topic: "SkillBridge Web UI Polish & Accessibility Review",
+    date: "Friday, Oct 17",
+    time: "5:00 PM - 5:45 PM IST",
+    status: "Confirmed",
+    sessionType: "Portfolio & UI Critique",
+    meetLink: "https://meet.google.com/sb-design-feedback",
+    prepNotes: "Have the live demo link and color contrast tokens open."
+  }
+];
+
+export const pastSessions = [
+  {
+    id: "past-1",
+    mentorName: "David Chen",
+    mentorAvatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80",
+    date: "Oct 10, 2026",
+    duration: "45 mins",
+    topic: "Graph Traversal & BFS/DFS in Python",
+    feedback: "Tharun has strong grasping of recursion! Recommended practicing 3 LeetCode Medium tree problems before moving to shortest path.",
+    ratingGiven: 5
+  },
+  {
+    id: "past-2",
+    mentorName: "Alex Rivera",
+    mentorAvatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80",
+    date: "Oct 04, 2026",
+    duration: "40 mins",
+    topic: "Containerizing React + Express with Docker Compose",
+    feedback: "Excellent progress. Docker multi-stage build reduced image footprint by 70%. Ready for GitHub Actions CI.",
+    ratingGiven: 5
+  },
+  {
+    id: "past-3",
+    mentorName: "Marcus Vance",
+    mentorAvatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&auto=format&fit=crop&q=80",
+    date: "Sep 27, 2026",
+    duration: "50 mins",
+    topic: "Junior Dev Resume Feedback & GitHub Portfolio Presentation",
+    feedback: "Refined bullet points using the Google XYZ formula: 'Accomplished [X] as measured by [Y], by doing [Z]'. Looks very clean now.",
+    ratingGiven: 5
+  }
+];
+
+export const learningGoals = [
+  {
+    id: "goal-1",
+    title: "Master React 19 & Modern Web Architecture",
+    domain: "Frontend",
+    progress: 75,
+    dueDate: "Nov 15, 2026",
+    mentor: "Sarah Jenkins",
+    milestones: [
+      { id: 1, text: "Component lifecycle & hooks mastery", done: true },
+      { id: 2, text: "Custom hooks for API caching", done: true },
+      { id: 3, text: "React 19 Actions and Optimistic UI", done: true },
+      { id: 4, text: "Production Lighthouse performance score 95+", done: false }
+    ]
+  },
+  {
+    id: "goal-2",
+    title: "TypeScript for Production Grade Web Apps",
+    domain: "Programming",
+    progress: 58,
+    dueDate: "Dec 01, 2026",
+    mentor: "Sarah Jenkins",
+    milestones: [
+      { id: 1, text: "Primitive & interface union types", done: true },
+      { id: 2, text: "Generics and constrained type parameters", done: true },
+      { id: 3, text: "Discriminated unions for state handling", done: false },
+      { id: 4, text: "Strict tsconfig & declaration file setup", done: false }
+    ]
+  },
+  {
+    id: "goal-3",
+    title: "System Design & Distributed Data Modeling",
+    domain: "Backend",
+    progress: 35,
+    dueDate: "Jan 10, 2027",
+    mentor: "Ananya Patel",
+    milestones: [
+      { id: 1, text: "Horizontal vs Vertical scaling fundamentals", done: true },
+      { id: 2, text: "Relational schema indexing & SQL optimizations", done: false },
+      { id: 3, text: "Caching strategies with Redis (Write-through vs Cache-aside)", done: false },
+      { id: 4, text: "Message broker queues & event-driven decoupling", done: false }
+    ]
+  },
+  {
+    id: "goal-4",
+    title: "UI/UX Accessibility & Design Systems",
+    domain: "Design",
+    progress: 80,
+    dueDate: "Oct 30, 2026",
+    mentor: "Priya Sharma",
+    milestones: [
+      { id: 1, text: "Figma autolayout, components & design tokens", done: true },
+      { id: 2, text: "WCAG 2.1 AA Color contrast compliance", done: true },
+      { id: 3, text: "Keyboard navigation & ARIA semantics audit", done: true },
+      { id: 4, text: "Motion design with micro-interactions", done: false }
+    ]
+  }
+];
+
+export const skillsCatalog = [
+  {
+    category: "Frontend Development",
+    skills: [
+      { name: "React.js", learners: 1420, mentorsAvailable: 64, level: "Popular", inLearningList: true },
+      { name: "TypeScript", learners: 1180, mentorsAvailable: 49, level: "Trending", inLearningList: true },
+      { name: "Tailwind CSS", learners: 980, mentorsAvailable: 53, level: "Popular", inLearningList: true },
+      { name: "Next.js", learners: 850, mentorsAvailable: 38, level: "Trending", inLearningList: false },
+      { name: "HTML5 & CSS3", learners: 2100, mentorsAvailable: 112, level: "Fundamental", inLearningList: false, canMentor: true },
+      { name: "Vue.js", learners: 430, mentorsAvailable: 22, level: "Intermediate", inLearningList: false }
+    ]
+  },
+  {
+    category: "Backend & Systems",
+    skills: [
+      { name: "Node.js & Express", learners: 1350, mentorsAvailable: 58, level: "Popular", inLearningList: true },
+      { name: "PostgreSQL & SQL", learners: 1040, mentorsAvailable: 45, level: "Essential", inLearningList: false },
+      { name: "System Design", learners: 920, mentorsAvailable: 31, level: "Advanced", inLearningList: true },
+      { name: "Go (Golang)", learners: 610, mentorsAvailable: 24, level: "Growing", inLearningList: false },
+      { name: "GraphQL", learners: 520, mentorsAvailable: 19, level: "Intermediate", inLearningList: false }
+    ]
+  },
+  {
+    category: "AI, ML & Data",
+    skills: [
+      { name: "Python for Developers", learners: 1890, mentorsAvailable: 88, level: "Essential", inLearningList: false },
+      { name: "Prompt Eng & LLM APIs", learners: 1240, mentorsAvailable: 42, level: "Hot", inLearningList: false },
+      { name: "PyTorch & Deep Learning", learners: 680, mentorsAvailable: 27, level: "Advanced", inLearningList: false },
+      { name: "Data Structures & Algos", learners: 2250, mentorsAvailable: 95, level: "Fundamental", inLearningList: true }
+    ]
+  },
+  {
+    category: "DevOps & Cloud",
+    skills: [
+      { name: "Docker & Containers", learners: 1120, mentorsAvailable: 44, level: "Popular", inLearningList: false },
+      { name: "Git & GitHub", learners: 2400, mentorsAvailable: 120, level: "Fundamental", inLearningList: false, canMentor: true },
+      { name: "AWS Cloud Fundamentals", learners: 890, mentorsAvailable: 35, level: "Industry Standard", inLearningList: false },
+      { name: "CI/CD & GitHub Actions", learners: 710, mentorsAvailable: 28, level: "Intermediate", inLearningList: false }
+    ]
+  },
+  {
+    category: "UI/UX & Career Coaching",
+    skills: [
+      { name: "Figma & UI Design", learners: 1030, mentorsAvailable: 41, level: "Creative", inLearningList: false },
+      { name: "Resume & Portfolio Audits", learners: 1650, mentorsAvailable: 73, level: "High Demand", inLearningList: false },
+      { name: "Technical Mock Interviews", learners: 1490, mentorsAvailable: 68, level: "High Demand", inLearningList: false },
+      { name: "Public Speaking & Soft Skills", learners: 640, mentorsAvailable: 29, level: "Essential", inLearningList: false }
+    ]
+  }
+];
+
+export const badgesList = [
+  {
+    id: "b-1",
+    title: "Curious Learner",
+    description: "Completed your first 1-on-1 mentorship session",
+    icon: "Sparkles",
+    unlocked: true,
+    unlockedDate: "Sep 2026",
+    color: "from-amber-400 to-orange-500"
+  },
+  {
+    id: "b-2",
+    title: "Consistency Ace",
+    description: "Maintained a 7-day active learning streak",
+    icon: "Flame",
+    unlocked: true,
+    unlockedDate: "Oct 2026",
+    color: "from-rose-500 to-red-600"
+  },
+  {
+    id: "b-3",
+    title: "Volunteer Mentor",
+    description: "Registered as a community mentor to guide beginners",
+    icon: "HeartHandshake",
+    unlocked: true,
+    unlockedDate: "Oct 2026",
+    color: "from-emerald-400 to-teal-600"
+  },
+  {
+    id: "b-4",
+    title: "Knowledge Seeker",
+    description: "Completed 30+ verified mentorship hours",
+    icon: "GraduationCap",
+    unlocked: true,
+    unlockedDate: "Oct 2026",
+    color: "from-blue-500 to-indigo-600"
+  },
+  {
+    id: "b-5",
+    title: "Code Architect",
+    description: "Built 3 real-world reviewed projects",
+    icon: "Award",
+    unlocked: false,
+    color: "from-slate-400 to-slate-500"
+  },
+  {
+    id: "b-6",
+    title: "Super Mentor",
+    description: "Helped 10+ students with 5-star ratings",
+    icon: "Crown",
+    unlocked: false,
+    color: "from-slate-400 to-slate-500"
+  }
+];
+
+export const mockMessages = {
+  "m-1": [
+    { sender: "Sarah Jenkins", time: "Yesterday, 4:15 PM", text: "Hey Tharun! Looking forward to our React session tomorrow." },
+    { sender: "Tharun D S", time: "Yesterday, 4:20 PM", text: "Thanks Sarah! I've prepared a couple of tricky state sync questions from my project." },
+    { sender: "Sarah Jenkins", time: "Yesterday, 4:22 PM", text: "Awesome, bring the code repo! We'll do a live step-through." }
+  ],
+  "m-3": [
+    { sender: "Priya Sharma", time: "2 days ago", text: "Hi Tharun, reviewed your initial wireframe - the hierarchy looks solid! We can polish the spacing and colors on Friday." },
+    { sender: "Tharun D S", time: "2 days ago", text: "Thank you Priya! Looking forward to Friday's critique." }
+  ]
+};
+

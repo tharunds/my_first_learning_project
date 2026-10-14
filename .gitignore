@@ -1,3 +1,11 @@
+# Node & Vite
+node_modules/
+dist/
+dist-ssr/
+*.local
+.env
+.env.*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
